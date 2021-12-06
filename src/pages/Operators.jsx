@@ -99,7 +99,7 @@ const Operators = () => {
                         <input type="password" name="password" onChange={changeCurD} placeholder="Password"/>
                         <select className="select" name="bus_id" onChange={changeCurD}>
                             {
-                                buses.length > 0 && buses.map(el => (
+                                buses && buses.length > 0 && buses.map(el => (
                                     <option value={el.id}>{el.name}</option>
                                 ))
                             }
