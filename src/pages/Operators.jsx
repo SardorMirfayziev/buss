@@ -1,28 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
-const options = [
-    {
-        name: "Apple",
-        id: "apple",
-    },
-    {
-        name: "Apple",
-        id: "apple",
-    },
-    {
-        name: "Apple",
-        id: "apple",
-    }
 
-];
 
 const Operators = () => {
     const [dests,setDests] = useState([])
-    const [buses,setBuses] = useState(options)
+    const [buses,setBuses] = useState([])
     const [curD,setCurD] = useState({
         alias: "operator",
-        bus_id: "",
+        bus_id: buses.length ? buses[0].id : 0,
         login: "",
         name: "",
         password: ""
@@ -36,13 +22,13 @@ const Operators = () => {
         console.log(curD)
     }
     const createDest = async () => {
+        console.log(curD.bus_id, 'sardor')
         await axios.post('user', {
             ...curD,
             bus_id: +curD.bus_id
         })
-        setCrOpen(true)
         getDs()
-
+        setCrOpen(true)
     }
     const getDs = async () => {
         const {data} = await axios.get('user?alias=operator')
@@ -51,6 +37,10 @@ const Operators = () => {
     const getBuses = async () => {
         const {data} = await axios.get('bus')
         setBuses(data.data.buses)
+        setCurD({
+            ...curD,
+            bus_id: data.data.buses ? data.data.buses[0].id : 0
+        })
     }
     const del = async (id) => {
         await axios.delete(`user/${id}`)
