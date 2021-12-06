@@ -81,9 +81,9 @@ const Destination = () => {
               {
                   !crOpen &&
                   <div className="create-form">
-                      <input type="number" name="distance" onChange={changeCurD} placeholder="distance"/>
-                      <input type="text" name="from" onChange={changeCurD} placeholder="From"/>
+                      <input type="number" name="distance" onChange={changeCurD} placeholder="distance in km"/>
                       <input type="number" name="price" onChange={changeCurD} placeholder="Price"/>
+                      <input type="text" name="from" onChange={changeCurD} placeholder="From"/>
                       <input type="text" name="to" onChange={changeCurD} placeholder="To"/>
 
                       <div className="c-p lbtn" onClick={createDest}>

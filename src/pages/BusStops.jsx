@@ -68,7 +68,7 @@ const Destination = ({ match }) => {
               {
                   !crOpen &&
                   <div className="create-form">
-                      <input type="number" name="distance" onChange={changeCurD} placeholder="Distance"/>
+                      <input type="number" name="distance" onChange={changeCurD} placeholder="Distance in Km"/>
                       <input type="text" name="name" onChange={changeCurD} placeholder="Name"/>
 
                       <div className="c-p lbtn" onClick={createDest}>
