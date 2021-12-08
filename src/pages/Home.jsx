@@ -53,6 +53,7 @@ const Home = () => {
                     <th>From</th>
                     <th>To</th>
                     <th>Price</th>
+                    <th>Bus Stops</th>
                     <th>Buses</th>
                 </tr>
               </thead>
@@ -64,6 +65,7 @@ const Home = () => {
                           <td>{el.from}</td>
                           <td>{el.to}</td>
                           <td>{el.price}</td>
+                          <td><span className="c-p"><Link to={`bus-stop/${el.id}`}>See bus stops</Link></span></td>
                           <td><span className="c-p"><Link to={`buses/${el.id}`}>See buses</Link></span></td>
                       </tr>
                   ))

@@ -4,10 +4,12 @@ import { useHistory } from "react-router-dom"
 import { useDispatch } from 'react-redux'
 import {setUser} from "../store/user/userSlice";
 
-const Auth = () => {
+const Signup = () => {
     let history = useHistory()
     const dispatch = useDispatch();
       const [curUser, setCuruser] = useState({
+          alias: "client",
+          name: "",
           login: "",
           password: ""
       })
@@ -17,8 +19,8 @@ const Auth = () => {
           [event.target.name]: event.target.value
       })
     }
-    const login = async () => {
-      const {data} = await axios.post('login',curUser)
+    const register = async () => {
+      const {data} = await axios.post('user',curUser)
         const u1 = data.data
         const type = u1.user_type
         dispatch(setUser({
@@ -39,13 +41,14 @@ const Auth = () => {
           <h2>Log in</h2>
 
           <div className="tabContent">
-              <input type="text" placeholder="Email" name="login" onChange={onchange}/>
+              <input type="text" placeholder="Name" name="name" onChange={onchange}/>
+              <input type="text" placeholder="Login" name="login" onChange={onchange}/>
               <input type="password" placeholder="Password" name="password" onChange={onchange}/>
           </div>
-          <button className="m-a" onClick={login}>Login</button>
+          <button className="m-a" onClick={register}>Register</button>
 
       </div>
   );
 };
 
-export default Auth;
+export default Signup;

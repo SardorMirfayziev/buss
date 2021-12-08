@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {Link,useParams} from "react-router-dom";
 const Destination = ({ match }) => {
+    const [userType] = useState(localStorage.getItem('userType'))
     const [dests,setDests] = useState([])
+    const isAdmin = userType === "superadmin"
     const {dId} = useParams()
     const [curD,setCurD] = useState({
         destination_id: +dId,
@@ -45,7 +47,9 @@ const Destination = ({ match }) => {
                 <tr>
                     <th>Distance</th>
                     <th>Name</th>
-                    <th></th>
+                    {
+                        isAdmin && <th></th>
+                    }
                 </tr>
               </thead>
               <tbody>
@@ -54,33 +58,39 @@ const Destination = ({ match }) => {
                       <tr key={el.id}>
                           <td>{el.distance}</td>
                           <td>{el.bus_stop}</td>
-                          <td><span className="del" onClick={()=> del(el.id)}>Delete</span></td>
+                          {
+                              isAdmin && <td><span className="del" onClick={()=> del(el.id)}>Delete</span></td>
+                          }
                       </tr>
                   ))
               }
               </tbody>
           </table>
-          <div className="create">
-              {
-                  crOpen && <button onClick={() => setCrOpen(false)}>Create Bus Stop</button>
-              }
+          {
+              isAdmin &&
+              <div className="create">
+                  {
+                      crOpen && <button onClick={() => setCrOpen(false)}>Create Bus Stop</button>
+                  }
 
-              {
-                  !crOpen &&
-                  <div className="create-form">
-                      <input type="number" name="distance" onChange={changeCurD} placeholder="Distance in Km"/>
-                      <input type="text" name="name" onChange={changeCurD} placeholder="Name"/>
+                  {
+                      !crOpen &&
+                      <div className="create-form">
+                          <input type="number" name="distance" onChange={changeCurD} placeholder="Distance in Km"/>
+                          <input type="text" name="name" onChange={changeCurD} placeholder="Name"/>
 
-                      <div className="c-p lbtn" onClick={createDest}>
-                          Create
+                          <div className="c-p lbtn" onClick={createDest}>
+                              Create
+                          </div>
+
+                          <div className="c-p lbtn" onClick={() => setCrOpen(true)}>
+                              Cancel
+                          </div>
                       </div>
+                  }
+              </div>
+          }
 
-                      <div className="c-p lbtn" onClick={() => setCrOpen(true)}>
-                          Cancel
-                      </div>
-                  </div>
-              }
-          </div>
       </div>
   );
 };
