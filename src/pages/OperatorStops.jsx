@@ -5,6 +5,7 @@ import { useParams} from "react-router-dom";
 
 const OperatorStops = () => {
     const [dests,setDests] = useState([])
+    const busName = localStorage.getItem('bName')
     const {bId} = useParams()
     const [curD,setCurD] = useState({
         alias: "operator",
@@ -53,6 +54,7 @@ const OperatorStops = () => {
     return (
         <div>
             <h2>Operators</h2>
+            <h2>bus id {busName}</h2>
             <table className="table">
                 <thead>
                 <tr>

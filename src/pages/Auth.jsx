@@ -18,21 +18,26 @@ const Auth = () => {
       })
     }
     const login = async () => {
-      const {data} = await axios.post('login',curUser)
-        const u1 = data.data
-        const type = u1.user_type
-        dispatch(setUser({
-            id: u1.id,
-            type
-        }))
-      if(type === "operator") {
-          history.push(`/op-bs/${u1.bus_id}/${u1.id}`)
-      } else if (type === "superadmin") {
-          history.push(`/destination`)
-      } else {
-          history.push(`/`)
+      try {
+          const {data} = await axios.post('login',curUser)
+          const u1 = data.data
+          const type = u1.user_type
+          dispatch(setUser({
+              id: u1.id,
+              type,
+              bus_name: u1.bus_name
+          }))
+          if(type === "operator") {
+              history.push(`/op-bs/${u1.bus_id}/${u1.id}`)
+          } else if (type === "superadmin") {
+              history.push(`/destination`)
+          } else {
+              history.push(`/`)
+          }
+          window.location.reload()
+      } catch (err) {
+          alert(err)
       }
-        window.location.reload()
     }
   return (
       <div className="auth">

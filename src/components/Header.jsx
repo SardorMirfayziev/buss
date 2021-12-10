@@ -10,6 +10,7 @@ const Header = () => {
     const logout = () => {
         localStorage.removeItem('userType')
         localStorage.removeItem('uId')
+        localStorage.removeItem('bName')
         window.location.reload()
     }
     return (

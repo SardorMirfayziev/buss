@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     type: null,
-    id: null
+    id: null,
+    busName: null
 }
 
 export const counterSlice = createSlice({
@@ -12,6 +13,7 @@ export const counterSlice = createSlice({
         setUser: (state, {payload}) => {
             localStorage.removeItem('userType')
             localStorage.setItem('userType',payload.type)
+            localStorage.setItem('bName', payload.bus_name)
             localStorage.setItem('uId', payload.id)
             state.id = payload.id
             state.type = payload.type
