@@ -303,3 +303,11 @@ input[type=text]:focus{
     width: 150px;
     height: 50px;
 }
+
+.history {
+    margin-top: 30px;
+}
+
+.active-tr {
+    background: #27a828 !important;
+}

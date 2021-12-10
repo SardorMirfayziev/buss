@@ -26,7 +26,7 @@ const Buses = () => {
     const createDest = async () => {
         await axios.post('bus', {
             ...curD,
-            seat_count: Number(curD.seat_count)
+            seat_count: Number(15)
         })
         setCrOpen(true)
         getDs()
@@ -58,7 +58,6 @@ const Buses = () => {
             el.booked_seats = el.booked_seats ? el.booked_seats : []
         })
         setDests(data.data.buses)
-
     }
     const del = async (id) => {
         await axios.delete(`bus/${id}`)
@@ -108,7 +107,7 @@ const Buses = () => {
                                  }
                              </td>
                              {
-                                 userType === "client" && <td><span className="c-p"><Link to={`cur-bus/${el.id}`}>See the bus</Link></span></td>
+                                 userType === "client" && <td><span className="c-p"><Link to={`/cur-bus/${el.id}`}>See the bus</Link></span></td>
                              }
                              {
                                  isAdmin && <td><span className="del" onClick={()=> del(el.id)}>Delete</span></td>
@@ -135,7 +134,6 @@ const Buses = () => {
                           <input type="text" name="name" onChange={changeCurD} placeholder="Name"/>
                           <input type="time" name="start_time" onChange={changeCurD} placeholder="Start time"/>
                           <input type="time" name="end_time" onChange={changeCurD} placeholder="End time"/>
-                          <input type="number" name="seat_count" onChange={changeCurD} placeholder="Seat Count"/>
 
                           <div className="c-p lbtn" onClick={createDest}>
                               Create

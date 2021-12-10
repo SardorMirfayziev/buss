@@ -67,7 +67,7 @@ const OperatorStops = () => {
                 <tbody>
                 {
                     dests.length && dests.map((el,index) => (
-                        <tr key={el.id} >
+                        <tr key={el.id} className={el.is_here ? "active-tr" : ""}>
                             <td>{el.bus_stop_name}</td>
                             <td>{el.is_here ? "Yes" : "No"}</td>
                             <td>{el.bus_stop_distance}</td>
