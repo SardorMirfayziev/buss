@@ -36,7 +36,7 @@ const Account = () => {
                       </thead>
                       <tbody>
                       {
-                          history.length && history.map((el) => (
+                          history && history.length && history.map((el) => (
                               <>
                                   <tr key={el.id}>
                                       <td>{el.bus_name}</td>
@@ -46,7 +46,6 @@ const Account = () => {
                                       <td>{el.start_time}</td>
                                       <td>{el.end_time}</td>
                                   </tr>
-
                               </>
                           ))
                       }
