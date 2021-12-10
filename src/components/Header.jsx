@@ -7,7 +7,11 @@ import iut from "../assets/img/iut.jpg"
 
 const Header = () => {
     const [userType] = useState(localStorage.getItem('userType'))
-
+    const logout = () => {
+        localStorage.removeItem('userType')
+        localStorage.removeItem('uId')
+        window.location.reload()
+    }
     return (
         <div className="header">
             <div className="logo">
@@ -32,7 +36,7 @@ const Header = () => {
                     {
                         userType && <li><Link to={"/account"}>Account</Link></li>
                     }
-
+                    <li onClick={()=> logout()}><a>Logout</a></li>
                 </ul>
             </nav>
         </div>

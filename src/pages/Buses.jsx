@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {Link, useParams} from "react-router-dom";
+import {Link, useParams, useHistory} from "react-router-dom";
 import SeatBook from "../components/SeatBook";
 
 const Buses = () => {
     const userType = localStorage.getItem('userType')
+    const history = useHistory()
     const uId = localStorage.getItem('uId')
     const {dId} = useParams()
     const isAdmin = userType === "superadmin"
@@ -33,6 +34,11 @@ const Buses = () => {
 
     }
     const reserve = async (seatN,busId) => {
+        if (!uId) {
+            alert('please login')
+            history.push('/auth')
+            return
+        }
         await axios.post('bus/reserve', {
             bus_id: busId,
             seat_number:seatN,
