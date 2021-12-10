@@ -5,7 +5,7 @@ import { useParams} from "react-router-dom";
 
 const OperatorStops = () => {
     const [dests,setDests] = useState([])
-    const {bId,oId} = useParams()
+    const {bId} = useParams()
     const [curD,setCurD] = useState({
         alias: "operator",
         bus_id: "",
