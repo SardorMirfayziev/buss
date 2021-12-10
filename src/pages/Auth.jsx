@@ -22,10 +22,11 @@ const Auth = () => {
           const {data} = await axios.post('login',curUser)
           const u1 = data.data
           const type = u1.user_type
+
           dispatch(setUser({
               id: u1.id,
               type,
-              bus_name: u1.bus_name
+              bus_name: u1.bus_name ? u1.bus_name : "null"
           }))
           if(type === "operator") {
               history.push(`/op-bs/${u1.bus_id}/${u1.id}`)
