@@ -45,7 +45,6 @@ const OperatorStops = () => {
             bus_stop_id: id
         })
         getDs()
-        console.log(data)
     }
 
     useEffect(()=> {
